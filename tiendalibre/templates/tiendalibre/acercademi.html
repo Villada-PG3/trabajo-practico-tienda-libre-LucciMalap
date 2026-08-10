@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Lucciano Malap</title>
+</head>
+ 
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f6f9;
+        color: #333;
+        overflow-x: hidden;
+    }
+    
+    section { padding: 120px 40px; }
+
+    .navbar {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: linear-gradient(90deg, #1e3c72, #2a5298);
+        box-shadow: 0 3px 10px rgba(0,0,0,.2);
+    }
+    
+    .logo { color: white; font-size: 28px; font-weight: bold; }
+    
+    .nav-links { display: flex; list-style: none; gap: 20px; }
+    .nav-links a {
+        text-decoration: none;
+        color: #1e3c72;
+        background-color: white;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: .3s;
+    }
+    
+    .nav-links a:hover {
+        background-color: #1e3c72;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .inicio {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .inicio h1 { font-size: 70px; margin-bottom: 20px; color: #1e3c72; }
+    .inicio p { font-size: 24px; max-width: 800px; line-height: 1.6; }
+
+    .botones { margin-top: 40px; display: flex; gap: 20px; }
+    .botones a {
+        text-decoration: none;
+        background-color: #1e3c72;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: .3s;
+    }
+    .botones a:hover { background-color: white; color: #16325c; transform: scale(1.05); }
+    
+    .contenedor {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        background-color: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
+    .izquierda {
+        width: 32%;
+        background: linear-gradient(180deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 30px;
+    }
+
+    .foto { display: flex; justify-content: center; margin-bottom: 25px; }
+    .foto img {
+        width: 180px; height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid white;
+    }
+    
+    .izquierda h2 { margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,.4); padding-bottom: 5px; }
+    .izquierda h3 { margin-top: 25px; margin-bottom: 10px; color: #dbe9ff; }
+    .izquierda ul { padding-left: 20px; }
+    .izquierda li { margin-bottom: 10px; }
+    
+    .derecha { width: 68%; padding: 40px; }
+    .nombre { font-size: 42px; color: #1e3c72; }
+    .subtitulo { color: #555; letter-spacing: 3px; margin-bottom: 30px; }
+    .derecha h2 {
+        color: #1e3c72;
+        margin-top: 20px; margin-bottom: 10px;
+        border-bottom: 2px solid #d6d6d6;
+        padding-bottom: 5px;
+    }
+    .derecha h3 { margin-top: 20px; color: #2a5298; }
+    .derecha h4 { color: #777; margin-bottom: 10px; }
+    .derecha p { line-height: 1.6; text-align: justify; }
+
+    .listaBordeada { border-left: 4px solid #2a5298; padding-left: 20px; margin-top: 15px; }
+    .listaBordeada li { margin-bottom: 25px; }
+
+    .proyectos { min-height: 100vh; }
+    .proyectos h1,
+    .habilidades h1,
+    .contacto h1 {
+        text-align: center;
+        font-size: 55px;
+        color: #1e3c72;
+        margin-bottom: 50px;
+    }
+    
+    .grid-proyectos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1300px;
+        margin: auto;
+    }
+    
+    .tarjeta {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 15px rgba(0,0,0,.1);
+        transition: .3s;
+        border-top: 6px solid #2a5298;
+    }
+    .tarjeta:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,.2); }
+    .tarjeta h2 { color: #1e3c72; margin-bottom: 15px; font-size: 28px; }
+    .tarjeta p { color: #555; line-height: 1.7; text-align: justify; }
+    
+    .habilidades { min-height: 100vh; background-color: #f4f6f9; }
+    .habilidades h1 { margin-bottom: 40px; }
+    .contenido-habilidades { max-width: 1200px; margin: auto; }
+    .texto-habilidades { text-align: justify; line-height: 1.8; font-size: 20px; margin-bottom: 40px; }
+    .tabla-habilidades {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0,0,0,.1);
+    }
+    .tabla-habilidades th {
+        background: linear-gradient(90deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 18px;
+        text-align: left;
+        font-size: 18px;
+    }
+    .tabla-habilidades td { padding: 18px; border-bottom: 1px solid #dcdcdc; font-size: 17px; }
+    .tabla-habilidades tr:hover { background-color: #f2f6ff; }
+    
+    .contacto { min-height: 100vh; background-color: #f4f6f9; }
+    .contenedor-contacto { max-width: 900px; margin: auto; }
+    .texto-contacto { text-align: center; font-size: 20px; line-height: 1.7; margin-bottom: 40px; }
+    .formulario-contacto {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        background-color: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,.1);
+    }
+    .formulario-contacto input,
+    .formulario-contacto textarea {
+        width: 100%;
+        padding: 18px;
+        border: 2px solid #d6d6d6;
+        border-radius: 12px;
+        font-size: 17px;
+        transition: .3s;
+        outline: none;
+        resize: none;
+    }
+    .formulario-contacto input:focus,
+    .formulario-contacto textarea:focus {
+        border-color: #2a5298;
+        box-shadow: 0 0 10px rgba(42,82,152,.2);
+    }
+    .formulario-contacto button {
+        background: linear-gradient(90deg, #1e3c72, #2a5298);
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .formulario-contacto button:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,.15); }
+    #estado-mensaje { margin-top: 20px; font-size: 18px; font-weight: bold; text-align: center; }
+
+    @media (max-width: 900px) {
+        .contenedor { flex-direction: column; }
+        .izquierda, .derecha { width: 100%; }
+        .navbar { flex-direction: column; gap: 20px; }
+        .nav-links { flex-wrap: wrap; justify-content: center; }
+        .inicio h1 { font-size: 50px; }
+        .inicio p { font-size: 18px; }
+        .botones { flex-direction: column; }
+    }
+</style>
+<body class="index-body">
+ 
+    <nav class="navbar">
+ 
+        <div class="logo">
+            Lucciano Malap
+        </div>
+ 
+        <ul class="nav-links">
+            <li><a href="/">🛒 Volver a la Tienda</a></li>
+ 
+            <li><a href="#inicio">Inicio</a></li>
+ 
+            <li><a href="#cv">Currículum</a></li>
+ 
+            <li><a href="#proyectos">Proyectos</a></li>
+ 
+            <li><a href="#habilidades">Habilidades</a></li>
+ 
+            <li><a href="#contacto">Contacto</a></li>
+ 
+        </ul>
+ 
+    </nav>
+ 
+    <section class="inicio" id="inicio">
+ 
+        <h1>Lucciano Malap</h1>
+ 
+        <p>
+            Estudiante de Programación apasionado por el desarrollo web,
+            automatización de procesos y creación de soluciones tecnológicas.
+        </p>
+ 
+        <div class="botones">
+ 
+            <a href="#cv">
+                Ver Currículum
+            </a>
+ 
+            <a href="#proyectos">
+                Ver Proyectos
+            </a>
+ 
+        </div>
+ 
+    </section>
+ 
+    <section class="cv" id="cv">
+ 
+        <div class="contenedor">
+ 
+        <div class="izquierda">
+ 
+            <div class="foto">
+                <img src="data:image/jpeg;base64,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" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVXpz56ZqP7qHnTYQuLWzTypELzRT9KnbvaQ&s">
+            </div>
+ 
+            <h2>Datos Personales</h2>
+ 
+            <h3>Información de Contacto</h3>
+ 
+            <ul>
+ 
+                <li>📞 +54 9 351-6795722</li>
+ 
+                <li><a href="https://mail.google.com/mail/u/0/#inbox?compose=jrjtXFBVZcsmjbpdBJqnnHSrLRCfrbsZJLjcMbfFgwMhNNbFRRbTMdwVprZJQPtBHQsQPlzp" style="color: white" target="_blank">Luccianomalap@gmail.com</a></li>
+ 
+                <li>📍 Venta y Media 5132</li>
+ 
+            </ul>
+ 
+            <h3>Información Académica</h3>
+ 
+            <ul>
+ 
+                <li>Escuela Técnica Salesiana Villada</li>
+ 
+                <li>Orientación en Programación</li>
+ 
+                <li>Promedio: 8.5</li>
+ 
+                <li>Nivel: Secundario</li>
+ 
+                <li>Estado: En curso</li>
+ 
+                <li>Fechas: 2021 - Actualidad</li>
+ 
+                <li>Egreso estimado: 2027</li>
+ 
+            </ul>
+ 
+            <h3>Habilidades</h3>
+ 
+            <ul>
+ 
+                <li>Manejo de Microsoft Office</li>
+ 
+                <li>Manejo de Google Workspace</li>
+ 
+                <li>Soporte administrativo y contable</li>
+ 
+                <li>Control de documentos y planillas</li>
+ 
+                <li>Razonamiento lógico y analítico</li>
+ 
+                <li>Automatización de tareas</li>
+ 
+                <li>Trabajo en equipo y comunicación</li>
+ 
+            </ul>
+ 
+            <h3>Idioma adicional</h3>
+ 
+            <p><b>Inglés:</b> Intermedio - Avanzado (B2)</p>
+ 
+        </div>
+ 
+        <div class="derecha">
+ 
+            <h1 class="nombre">Lucciano Malap</h1>
+ 
+            <h2 class="subtitulo">
+                Tecnicatura en Programación
+            </h2>
+ 
+            <h2>Perfil Profesional</h2>
+ 
+            <p>
+                Estudiante de la Escuela Técnica Salesiana Villada con orientación
+                en programación, interesado en desarrollarme profesionalmente en el
+                área administrativa y tecnológica.
+            </p>
+ 
+            <h2>Experiencia Laboral</h2>
+ 
+            <ul class="listaBordeada">
+ 
+                <li>
+ 
+                    <h3>Asistente Administrativo – Empresa Familiar</h3>
+ 
+                    <h4>Córdoba, Argentina | 2025 | 3 meses</h4>
+ 
+                    <p>
+                       En la empresa familiar, me desempeño en el área administrativa brindando soporte en tareas de gestión y organización interna. Colaboro en la carga y control de datos, manejo de planillas y documentación contable, así como en la organización de archivos y el seguimiento de pagos y cobros.
+ Gracias a mi formación en la Tecnicatura en Programación, incorporé herramientas informáticas que optimizaron los procesos administrativos, mejorando la precisión y el orden en el registro de información. Mi enfoque analítico y atención al detalle me permitieron desempeñarme con responsabilidad y eficiencia en un entorno dinámico, fortaleciendo mis habilidades de comunicación y trabajo en equipo.
+                    </p>
+ 
+                </li>
+ 
+                <li>
+ 
+                    <h3>Experiencias Complementarias</h3>
+ 
+                    <ul>
+ 
+                        <li>
+                            Desarrollo de sistemas de gestión de archivos y automatización de tareas en proyectos escolares, mejorando la organización de información y la eficiencia de procesos.
+                        </li>
+ 
+                        <li>
+                            Participación en trabajos grupales aplicando metodologías ágiles y documentación técnica para optimizar proyectos administrativos.
+                        </li>
+ 
+                        <li>
+                            Creación de pequeñas bases de datos y hojas de cálculo para el control de inventarios y seguimiento de actividades.
+                        </li>
+ 
+                        <li>
+                            Experiencia práctica en organización de información y digitalización de documentos en entornos educativos.
+                        </li>
+ 
+                    </ul>
+ 
+                </li>
+ 
+            </ul>
+ 
+        </div>
+ 
+    </div>
+ 
+    </section>
+ 
+    <section class="proyectos" id="proyectos">
+ 
+        <h1>Mis Proyectos</h1>
+ 
+        <div class="grid-proyectos">
+ 
+            <div class="tarjeta">
+ 
+                <h2>Organizador Automático de Carpetas</h2>
+ 
+                <p>
+                    Sistema desarrollado en Python capaz de organizar
+                    automáticamente archivos descargados según su tipo
+                    y extensión, optimizando el orden y la productividad.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Juego Tipo Puzzle</h2>
+ 
+                <p>
+                    Desarrollo de un juego inspirado en "Tracks",
+                    utilizando lógica de programación, estructuras
+                    dinámicas y generación de tableros interactivos.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Sistema de Gestión Escolar</h2>
+ 
+                <p>
+                    Creación de herramientas para automatización
+                    y control de información académica utilizando
+                    Python, HTML y bases de datos simples.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Simulaciones de las Leyes de Newton</h2>
+ 
+                <p>
+                    Desarrollo de simulaciones físicas en Python para la
+                    Feria de Ciencias, representando las tres leyes de Newton
+                    mediante movimiento, fuerzas e interacción entre objetos.
+                    El proyecto permitió visualizar conceptos físicos de forma
+                    dinámica e interactiva utilizando programación.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Proyecto Softland ERP</h2>
+ 
+                <p>
+                    Investigación y documentación sobre módulos,
+                    implementación y funcionalidades de Softland ERP
+                    orientadas a administración empresarial.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Desarrollo Web HTML y CSS</h2>
+ 
+                <p>
+                    Diseño de páginas web modernas y responsivas
+                    aplicando buenas prácticas de UI/UX y estructura
+                    profesional de contenido.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Workly</h2>
+ 
+                <p>
+                    Desarrollo de una aplicación web enfocada en la búsqueda
+                    y publicación de empleos, inspirada en plataformas como LinkedIn.
+                    El proyecto permite conectar personas y oportunidades laborales
+                    mediante perfiles, publicaciones y herramientas de interacción.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Sistema Inteligente para Gestión Comercial</h2>
+ 
+                <p>
+                    Proyecto desarrollado con Arduino utilizando sensores y una
+                    base de datos para analizar el comportamiento de clientes
+                    dentro de un local comercial. El sistema permitía identificar
+                    horarios pico y optimizar la aplicación de promociones y ofertas
+                    para maximizar beneficios y mejorar la toma de decisiones.
+                </p>
+ 
+            </div>
+ 
+            <div class="tarjeta">
+ 
+                <h2>Historial Clínico Psiquiátrico</h2>
+ 
+                <p>
+                    Desarrollo de un sistema digital de historial clínico para una
+                    consultoría psiquiátrica, orientado a la organización segura
+                    de información de pacientes, seguimiento de consultas y gestión
+                    eficiente de registros médicos.
+                </p>
+ 
+            </div>
+ 
+        </div>
+ 
+    </section>
+ 
+    <section class="habilidades" id="habilidades">
+ 
+        <h1>Habilidades</h1>
+ 
+        <div class="contenido-habilidades">
+ 
+            <p class="texto-habilidades">
+ 
+                A lo largo de mi formación académica y proyectos personales,
+                desarrollé habilidades relacionadas con programación,
+                automatización de procesos, administración y trabajo en equipo.
+                Me destaco por mi capacidad de aprendizaje, pensamiento lógico
+                y adaptación a distintos entornos tecnológicos.
+ 
+            </p>
+ 
+            <table class="tabla-habilidades">
+ 
+                <tr>
+                    <th>Área</th>
+                    <th>Conocimientos</th>
+                    <th>Nivel</th>
+                </tr>
+ 
+                <tr>
+                    <td>Programación</td>
+                    <td>Python, HTML, CSS</td>
+                    <td>Intermedio</td>
+                </tr>
+ 
+                <tr>
+                    <td>Desarrollo Web</td>
+                    <td>Estructuración y diseño responsivo</td>
+                    <td>Intermedio</td>
+                </tr>
+ 
+                <tr>
+                    <td>Ofimática</td>
+                    <td>Word, Excel, PowerPoint</td>
+                    <td>Avanzado</td>
+                </tr>
+ 
+                <tr>
+                    <td>Google Workspace</td>
+                    <td>Docs, Sheets, Drive</td>
+                    <td>Avanzado</td>
+                </tr>
+ 
+                <tr>
+                    <td>Bases de Datos</td>
+                    <td>Organización y gestión de información</td>
+                    <td>Intermedio</td>
+                </tr>
+ 
+                <tr>
+                    <td>Arduino</td>
+                    <td>Sensores y automatización</td>
+                    <td>Intermedio</td>
+                </tr>
+ 
+                <tr>
+                    <td>UX/UI</td>
+                    <td>Diseño de interfaces y experiencia de usuario</td>
+                    <td>Básico - Intermedio</td>
+                </tr>
+ 
+                <tr>
+                    <td>Idiomas</td>
+                    <td>Inglés B2</td>
+                    <td>Intermedio - Avanzado</td>
+                </tr>
+ 
+            </table>
+ 
+        </div>
+ 
+    </section>
+ 
+    <section class="contacto" id="contacto">
+ 
+        <h1>Contacto</h1>
+ 
+        <div class="contenedor-contacto">
+ 
+            <p class="texto-contacto">
+ 
+                Si deseas comunicarte conmigo para consultas, proyectos,
+                oportunidades laborales o colaboraciones, puedes enviarme
+                un mensaje a través del siguiente formulario.
+ 
+            </p>
+ 
+            <form class="formulario-contacto" id="formulario">
+ 
+                <input 
+                    type="text" 
+                    id="nombre"
+                    placeholder="Nombre"
+                >
+ 
+                <input 
+                    type="email" 
+                    id="email"
+                    placeholder="Email"
+                >
+ 
+                <textarea 
+                    id="mensaje"
+                    placeholder="Escribe tu mensaje..."
+                    rows="8"
+                ></textarea>
+ 
+                <button type="submit">
+                    Enviar Mensaje
+                </button>
+
+                <div id="contador-caracteres" style="text-align: right; font-size: 0.9em; color: #777;">
+                    0 / 300 caracteres
+                </div>
+ 
+            </form>
+ 
+            <div class="form-footer">
+                <p id="estado-mensaje"></p>
+            </div>
+ 
+        </div>
+ 
+    </section>
+ 
+    <script>
+        const form         = document.getElementById("formulario");
+        const nombre       = document.getElementById("nombre");
+        const email        = document.getElementById("email");
+        const mensaje      = document.getElementById("mensaje");
+        const estado       = document.getElementById("estado-mensaje");
+        const contador     = document.getElementById("contador-caracteres");
+ 
+        mensaje.addEventListener("input", function () {
+            const longitud = mensaje.value.length;
+            contador.textContent = longitud + " / 300 caracteres";
+            contador.style.color = longitud > 300 ? "red" : "#333";
+        });
+ 
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+ 
+            if (nombre.value.trim() === "" || email.value.trim() === "" || mensaje.value.trim() === "") {
+                estado.textContent = "❌ Completá todos los campos.";
+                estado.style.color = "red";
+                return;
+            }
+            if (mensaje.value.length > 300) {
+                estado.textContent = "❌ El mensaje no puede superar los 300 caracteres.";
+                estado.style.color = "red";
+                return;
+            }
+ 
+            estado.textContent = "✅ Mensaje enviado correctamente.";
+            estado.style.color = "green";
+ 
+            form.reset();
+            contador.textContent = "0 caracteres";
+            contador.style.color = "#777";
+        });
+    </script>
+ 
+</body>
+</html>

@@ -20,13 +20,13 @@ class Producto(models.Model):
         null = True,
         blank = True # temporal hasta que se agregue la categoria a todos los productos
     )
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    nombre = models.CharField(max_length=200)
+    descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField(default=0)
     marca = models.CharField(max_length=50, default='Marca Desconocida')
     imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateField(auto_now_add=True) 
     activo = models.BooleanField(default=True)
 
     class Meta:
