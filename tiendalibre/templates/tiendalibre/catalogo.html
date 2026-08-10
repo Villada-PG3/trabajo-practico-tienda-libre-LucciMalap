@@ -1,205 +1,97 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Libre - Catálogo</title>
-    <style>
-        /* === ESTILOS BASE Y NAV (Tomados de tu diseño) === */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            padding-top: 100px; 
-        }
+<!-- 1. Le decimos a Django que herede la estructura de base.html -->
+{% extends 'tiendalibre/base.html' %}
 
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 40px;
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            box-shadow: 0 3px 10px rgba(0,0,0,.2);
-        }
-        
-        .logo { color: white; font-size: 28px; font-weight: bold; }
-        
-        .nav-links { display: flex; list-style: none; gap: 20px; }
-        .nav-links a {
-            text-decoration: none; color: #1e3c72; background-color: white;
-            padding: 10px 18px; border-radius: 10px; font-weight: bold; transition: .3s;
-        }
-        .nav-links a:hover {
-            background-color: #e2e8f0;
-            transform: translateY(-2px);
-        }
+<!-- 2. Cambiamos el título de la pestaña -->
+{% block title %}Catálogo - Tienda Libre{% endblock %}
 
-        /* === SECCIÓN CABECERA === */
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-            color: #1e3c72;
-        }
-        .hero h1 { font-size: 50px; margin-bottom: 10px; }
-        .hero p { font-size: 20px; color: #555; }
+<!-- 3. Usamos el bloque de CSS extra para darle el "toque especial" a las tarjetas -->
+{% block extra_css %}
+<style>
+    /* Transición suave para levantar la tarjeta al pasar el mouse */
+    .tarjeta-custom {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 5px solid #2a5298;
+    }
+    .tarjeta-custom:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+    }
+    
+    .foto-producto {
+        height: 220px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
 
-        /* === FILTROS DE CATEGORÍAS === */
-        .filtros {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-        .filtros a {
-            text-decoration: none;
-            color: #1e3c72;
-            background-color: white;
-            padding: 12px 25px;
-            border-radius: 20px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: .3s;
-            border: 2px solid transparent;
-        }
-        .filtros a:hover {
-            border: 2px solid #1e3c72;
-            transform: translateY(-3px);
-        }
+<!-- 4. Aquí va el contenido real de la página -->
+{% block content %}
 
-        /* === GRILLA DE PRODUCTOS (Adaptada de tus Proyectos) === */
-        .grid-productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1300px;
-            margin: auto;
-            padding: 0 40px 80px;
-        }
+    <!-- Cabecera de la página -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary" style="color: #1e3c72 !important;">Nuestro Catálogo</h1>
+        <p class="lead text-secondary">Encontrá los mejores productos al mejor precio.</p>
+    </div>
 
-        .tarjeta-producto {
-            background-color: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0,0,0,.1);
-            transition: .3s;
-            border-top: 6px solid #2a5298;
-            display: flex;
-            flex-direction: column;
-        }
-        .tarjeta-producto:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 12px 25px rgba(0,0,0,.2); 
-        }
-
-        .etiqueta-categoria {
-            align-self: flex-start;
-            background-color: #dbe9ff;
-            color: #1e3c72;
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .tarjeta-producto h2 { color: #1e3c72; font-size: 24px; margin-bottom: 10px; }
-        .precio { font-size: 28px; color: #27ae60; font-weight: bold; margin-bottom: 15px; }
-        
-        .detalles p { color: #555; line-height: 1.6; margin-bottom: 5px; }
-        .detalles strong { color: #333; }
-        
-        .descripcion {
-            margin-top: 15px;
-            font-size: 15px;
-            color: #777;
-            text-align: justify;
-            flex-grow: 1;
-        }
-
-        .btn-comprar {
-            margin-top: 25px;
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: .3s;
-            display: block;
-        }
-        .btn-comprar:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,.15);
-        }
-
-        .foto-producto {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            background-color: #f4f6f9;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="navbar">
-        <div class="logo">Tienda Libre</div>
-        <ul class="nav-links">
-            <li><a href="{% url 'acercademi' %}">Acerca de Mí</a></li>
-        </ul>
-    </nav>
-
-    <!-- CABECERA -->
-    <section class="hero">
-        <h1>Bienvenido a Tienda Libre</h1>
-        <p>Encontrá los mejores productos de supermercado al mejor precio.</p>
-    </section>
-
-    <!-- FILTROS (Tus Categorías) -->
-    <div class="filtros">
-        <a href="?">Ver Todos</a>
+    <!-- Filtros de Categorías (Botones Bootstrap) -->
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+        <a href="?" class="btn btn-outline-primary rounded-pill px-4">Ver Todos</a>
         {% for categoria in categorias %}
-            <a href="?categoria={{ categoria.id }}">{{ categoria.nombre }}</a>
+            <a href="?categoria={{ categoria.id }}" class="btn btn-outline-primary rounded-pill px-4">
+                {{ categoria.nombre }}
+            </a>
         {% endfor %}
     </div>
 
-    <!-- GRILLA DE PRODUCTOS -->
-    <div class="grid-productos">
+    <!-- Grilla de Productos (Usando el sistema Grid de Bootstrap) -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% if productos %}
             {% for producto in productos %}
-                <div class="tarjeta-producto">
-                    {% if producto.imagen %}
-                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="foto-producto">
-                    {% endif %}
+                <div class="col">
+                    <!-- Tarjeta de Bootstrap -->
+                    <div class="card h-100 shadow-sm border-0 tarjeta-custom rounded-4">
+                        
+                        <!-- Imagen -->
+                        {% if producto.imagen %}
+                            <img src="{{ producto.imagen.url }}" class="card-img-top foto-producto rounded-top-4" alt="{{ producto.nombre }}">
+                        {% else %}
+                            <div class="bg-light d-flex align-items-center justify-content-center foto-producto rounded-top-4 text-muted">
+                                <span>Sin imagen</span>
+                            </div>
+                        {% endif %}
 
-                    <span class="etiqueta-categoria">{{ producto.categoria.nombre }}</span>
-                    
-                    <h2>{{ producto.nombre }}</h2>
-                    <div class="precio">${{ producto.precio }}</div>
-                    
-                    <div class="detalles">
-                        <p><strong>Marca:</strong> {{ producto.marca }}</p>
-                        <p><strong>Stock disponible:</strong> {{ producto.stock }} unid.</p>
+                        <!-- Cuerpo de la tarjeta -->
+                        <div class="card-body d-flex flex-column">
+                            <!-- Etiqueta de categoría -->
+                            <div class="mb-2">
+                                <span class="badge" style="background-color: #dbe9ff; color: #1e3c72;">{{ producto.categoria.nombre }}</span>
+                            </div>
+                            
+                            <h5 class="card-title fw-bold" style="color: #1e3c72;">{{ producto.nombre }}</h5>
+                            <h3 class="text-success fw-bold mb-3">${{ producto.precio }}</h3>
+                            
+                            <p class="text-muted small mb-1"><strong>Marca:</strong> {{ producto.marca }}</p>
+                            <p class="text-muted small mb-3"><strong>Stock:</strong> {{ producto.stock }} unid.</p>
+                            
+                            <!-- Descripción que empuja el botón al fondo -->
+                            <p class="card-text text-secondary mb-4 flex-grow-1" style="font-size: 0.9rem; text-align: justify;">
+                                {{ producto.descripcion|truncatechars:100 }}
+                            </p>
+
+                            <!-- Botón de comprar (anclado abajo por el flex-grow-1 de arriba) -->
+                            <a href="#" class="btn text-white fw-bold mt-auto rounded-3" style="background: linear-gradient(90deg, #1e3c72, #2a5298);">
+                                Añadir al Carrito
+                            </a>
+                        </div>
                     </div>
-                    
-                    <p class="descripcion">{{ producto.descripcion }}</p>
-
-                    <a href="#" class="btn-comprar">Añadir al Carrito</a>
                 </div>
             {% endfor %}
         {% else %}
-            <div style="grid-column: 1 / -1; text-align: center; margin-top: 50px;">
-                <h2 style="color: #1e3c72; font-size: 30px;">No se encontraron productos.</h2>
-                <p style="color: #555; font-size: 18px; margin-top: 10px;">Intenta seleccionando otra categoría.</p>
+            <!-- Mensaje si no hay productos -->
+            <div class="col-12 text-center my-5">
+                <h3 class="text-muted">No se encontraron productos en esta categoría.</h3>
             </div>
         {% endif %}
     </div>
 
-</body>
-</html>
+{% endblock %}
