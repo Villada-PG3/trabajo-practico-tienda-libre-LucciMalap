@@ -9,10 +9,8 @@ def catalogo_productos(request):
     categoria_id = request.GET.get('categoria')
     
     if categoria_id:
-        # Filtramos los productos por la categoría seleccionada
         productos = Producto.objects.filter(categoria_id=categoria_id)
     else:
-        # Si no hay filtro, mostramos todos
         productos = Producto.objects.all()
 
     contexto = {

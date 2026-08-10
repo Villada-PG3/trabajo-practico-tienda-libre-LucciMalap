@@ -4,10 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("productos/", include("tiendalibre.urls")),
-    path('', include('tiendalibre.urls')),
-    path("acerca-de-mi/", include('tiendalibre.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('tiendalibre.urls')), 
 ]
 
 if settings.DEBUG:
