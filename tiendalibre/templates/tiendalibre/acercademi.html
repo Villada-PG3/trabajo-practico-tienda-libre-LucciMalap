@@ -4,7 +4,6 @@
 
 {% block extra_css %}
 <style>
-    /* SOLO DEJAMOS LO ESTRICTAMENTE NECESARIO QUE NO TRAE BOOTSTRAP */
     html { scroll-behavior: smooth; }
     
     .text-brand { color: #1e3c72; }
@@ -20,30 +19,22 @@
 
 {% block content %}
 <div>
-    
-    <!-- SUB-MENÚ DE NAVEGACIÓN (Bootstrap Pills) -->
-    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5 mt-4">
-        <a href="#inicio" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Inicio</a>
-        <a href="#cv" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Currículum</a>
-        <a href="#proyectos" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Proyectos</a>
-        <a href="#habilidades" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Habilidades</a>
-        <a href="#contacto" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Contacto</a>
-    </div>
- 
-    <!-- SECCIÓN INICIO -->
     <section class="d-flex flex-column justify-content-center align-items-center text-center mb-5" id="inicio" style="min-height: 70vh;">
         <h1 class="display-3 fw-bold text-brand mb-3">Lucciano Malap</h1>
+        
+        <div class="d-flex justify-content-center flex-wrap gap-2 mb-5 mt-4">
+            <a href="#inicio" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Inicio</a>
+            <a href="#cv" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Currículum</a>
+            <a href="#proyectos" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Proyectos</a>
+            <a href="#habilidades" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Habilidades</a>
+            <a href="#contacto" class="btn btn-outline-primary rounded-pill fw-bold" style="border-color: #1e3c72; color: #1e3c72;">Contacto</a>
+        </div>
         <p class="lead text-secondary fs-4" style="max-width: 800px;">
             Estudiante de Programación apasionado por el desarrollo web,
             automatización de procesos y creación de soluciones tecnológicas.
         </p>
-        <div class="d-flex gap-3 mt-4">
-            <a href="#cv" class="btn text-white rounded-pill px-4 py-2 fw-bold bg-gradient-horizontal border-0 shadow">Ver Currículum</a>
-            <a href="#proyectos" class="btn text-white rounded-pill px-4 py-2 fw-bold bg-gradient-horizontal border-0 shadow">Ver Proyectos</a>
-        </div>
     </section>
- 
-    <!-- SECCIÓN CV (Bootstrap Card + Grid) -->
+    
     <section class="py-5" id="cv">
         <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
             <div class="row g-0">
@@ -55,24 +46,39 @@
                     <h4 class="border-bottom border-light pb-2 mt-4">Datos Personales</h4>
                     
                     <h5 class="mt-4 mb-3 text-info">Información de Contacto</h5>
-                    <ul class="list-unstyled lh-lg">
-                        <li>📞 +54 9 351-6795722</li>
-                        <li>📧 <a href="mailto:Luccianomalap@gmail.com" class="text-white text-decoration-none">Luccianomalap@gmail.com</a></li>
-                        <li>📍 Venta y Media 5132</li>
+                    <ul class="lh-lg">
+                        <li>Telefono: +54 9 351-6795722</li>
+                        <li>Gmail: <a href="mailto:Luccianomalap@gmail.com" class="text-white text-decoration-none">Luccianomalap@gmail.com</a></li>
+                        <li>Ubicacion: Venta y Media 5132</li>
                     </ul>
                     
                     <h5 class="mt-4 mb-3 text-info">Información Académica</h5>
-                    <ul class="list-unstyled lh-lg">
-                        <li>🎓 Escuela Técnica Salesiana Villada</li>
-                        <li>💻 Orientación en Programación</li>
-                        <li>⭐ Promedio: 8.5</li>
-                        <li>🏫 Nivel: Secundario (En curso)</li>
-                        <li>🗓️ Fechas: 2021 - Actualidad</li>
-                        <li>🏁 Egreso estimado: 2027</li>
+                    <ul class="lh-lg">
+                        <li> Escuela Técnica Salesiana Villada</li>
+                        <li> Orientación en Programación</li>
+                        <li> Promedio: 8.5</li>
+                        <li> Nivel: Secundario (En curso)</li>
+                        <li> Fechas: 2021 - Actualidad</li>
+                        <li> Egreso estimado: 2027</li>
                     </ul>
-
+                    
+                    <h5 class="mt-4 mb-3 text-info">Habilidades</h5>
+                    <ul>
+                        <li>Manejo de Microsoft Office</li>
+                        <li>Manejo de Google Workspace</li>
+                        <li>Soporte administrativo y contable</li>
+                        <li>Control de documentos y planillas</li>
+                        <li>Razonamiento lógico y analítico</li>
+                        <li>Automatización de tareas</li>
+                        <li>Trabajo en equipo y comunicación</li>
+                    </ul>
                     <h5 class="mt-4 mb-3 text-info">Idioma adicional</h5>
-                    <p><b>Inglés:</b> Avanzado (C1)</p>
+                    <ul>
+                        <li>Inglés:</b> Avanzado (C1)</li>
+                        <li>Italiano:</b> Basico (A2)</li>
+                        
+                    </ul>
+                    
                 </div>
                 
                 <!-- Derecha -->
@@ -112,7 +118,6 @@
         </div>
     </section>
  
-    <!-- SECCIÓN PROYECTOS (Bootstrap Grid + Cards) -->
     <section class="py-5" id="proyectos">
         <h2 class="display-5 fw-bold text-center text-brand mb-5">Mis Proyectos</h2>
         
@@ -234,12 +239,12 @@
                             <tr class="border-bottom">
                                 <td class="p-3 fw-bold text-dark">Ofimática</td>
                                 <td class="p-3">Word, Excel, PowerPoint</td>
-                                <td class="p-3"><span class="badge bg-primary">Avanzado</span></td>
+                                <td class="p-3"><span class="badge bg-secondary">Avanzado</span></td>
                             </tr>
                             <tr class="border-bottom">
                                 <td class="p-3 fw-bold text-dark">Google Workspace</td>
                                 <td class="p-3">Docs, Sheets, Drive</td>
-                                <td class="p-3"><span class="badge bg-primary">Avanzado</span></td>
+                                <td class="p-3"><span class="badge bg-secondary">Avanzado</span></td>
                             </tr>
                             <tr class="border-bottom">
                                 <td class="p-3 fw-bold text-dark">Bases de Datos</td>
@@ -254,12 +259,12 @@
                             <tr class="border-bottom">
                                 <td class="p-3 fw-bold text-dark">UX/UI</td>
                                 <td class="p-3">Diseño de interfaces y experiencia de usuario</td>
-                                <td class="p-3"><span class="badge bg-info text-dark">Básico - Intermedio</span></td>
+                                <td class="p-3"><span class="badge bg-secondary">Básico - Intermedio</span></td>
                             </tr>
                             <tr>
                                 <td class="p-3 fw-bold text-dark">Idiomas</td>
                                 <td class="p-3">Inglés C1</td>
-                                <td class="p-3"><span class="badge bg-success">Avanzado</span></td>
+                                <td class="p-3"><span class="badge bg-secondary">Avanzado</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -268,7 +273,6 @@
         </div>
     </section>
  
-    <!-- SECCIÓN CONTACTO (Bootstrap Forms) -->
     <section class="py-5 mb-5" id="contacto">
         <h2 class="display-5 fw-bold text-center text-brand mb-4">Contacto</h2>
         
