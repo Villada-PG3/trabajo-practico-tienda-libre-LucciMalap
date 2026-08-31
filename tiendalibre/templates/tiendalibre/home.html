@@ -43,7 +43,7 @@
                     <div class="card h-100 shadow-sm border-0 tarjeta-custom rounded-4">
                         
                         {% if producto.imagen %}
-                            <img src="{{ producto.imagen.url }}" class="card-img-top foto-producto rounded-top-4" alt="{{ producto.nombre }}">
+                            <img src="{{ producto.imagen }}" class="card-img-top foto-producto rounded-top-4" alt="{{ producto.nombre }}">
                         {% else %}
                             <div class="bg-light d-flex align-items-center justify-content-center foto-producto rounded-top-4 text-muted">
                                 <span>Sin imagen</span>
@@ -56,9 +56,9 @@
                             </div>
                             
                             <h5 class="card-title fw-bold" style="color: #1e3c72;">{{ producto.nombre }}</h5>
-                            <h3 class="text-success fw-bold mb-3">${{ producto.precio }}</h3>
+                            <h3 class="text-success fw-bold mb-3">${{ producto.precio|floatformat:2|default:"Sin valor" }}</h3>
                             
-                            <p class="text-muted small mb-1"><strong>Marca:</strong> {{ producto.marca }}</p>
+                            <p class="text-muted small mb-1"><strong>Marca:</strong> {{ producto.marca|upper }}</p>
                             {% if producto.stock > 0 %}
                             <p class="text-muted small mb-3"><strong>Stock:</strong> {{ producto.stock }} unid.</p>
                             {% else %}

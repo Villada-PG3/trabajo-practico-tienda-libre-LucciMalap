@@ -39,7 +39,8 @@ def catalogo_productos(request):
             'stock': 5,
             'marca': 'Topper',
             'fecha_ingreso': datetime.date(2026, 8, 20),
-            'categoria': 'Deportes'
+            'categoria': 'Deportes',
+            'imagen': './media/productos/zapatillas.jpeg'
         },
         {
             'nombre': 'REMERA DE ALGODÓN',
@@ -48,7 +49,8 @@ def catalogo_productos(request):
             'stock': 10,
             'marca': 'Adidas',
             'fecha_ingreso': datetime.date(2026, 8, 25),
-            'categoria': 'Ropa'
+            'categoria': 'Ropa',
+            'imagen': './media/productos/remeraAlgodon.jpeg'
         },
         {
             'nombre': 'Auriculares Bluetooth',
@@ -57,7 +59,8 @@ def catalogo_productos(request):
             'stock': 15,
             'marca': 'Daewoo',
             'fecha_ingreso': datetime.date(2026, 8, 30),
-            'categoria': 'Electronica'
+            'categoria': 'Electronica',
+            'imagen': './media/productos/auriculares.jpeg'
         },
         {
             'nombre': 'Reloj Inteligente Fit',
@@ -66,7 +69,8 @@ def catalogo_productos(request):
             'stock': 4,
             'marca': 'Gadnic',
             'fecha_ingreso': datetime.date(2026, 8, 31),
-            'categoria': 'Electronica'
+            'categoria': 'Electronica',
+            'imagen': './media/productos/Reloj.jpeg'
         },
         {
             'nombre': 'Mochila Urbana Resistente',
@@ -75,7 +79,8 @@ def catalogo_productos(request):
             'stock': 9,
             'marca': 'Gadnic',
             'fecha_ingreso': datetime.date(2026, 8, 15),
-            'categoria': 'Deportes'
+            'categoria': 'Deportes',
+            'imagen': './media/productos/mochila.jpeg'
         },
         {
             'nombre': 'Termo de Acero Inoxidable',
@@ -84,7 +89,8 @@ def catalogo_productos(request):
             'stock': 5,
             'marca': 'Stanley',
             'fecha_ingreso': datetime.date(2026, 8, 10),
-            'categoria': 'Hogar'
+            'categoria': 'Hogar',
+            'imagen': './media/productos/termo.jpeg'
         },
         {
             'nombre': 'El hombre en busca de sentido',
@@ -93,7 +99,8 @@ def catalogo_productos(request):
             'stock': 0,
             'marca': 'El emporio',
             'fecha_ingreso': datetime.date(2026, 8, 10),
-            'categoria': 'Libros'
+            'categoria': 'Libros',
+            'imagen': './media/productos/libro.jpeg'
         }
     ]
     categoria_id = request.GET.get('categoria')
@@ -118,6 +125,6 @@ def catalogo_productos(request):
         'categorias_lista': categorias_lista,
     }
     
-    return render(request, 'tiendalibre/catalogo.html', context)
+    return render(request, 'tiendalibre/home.html', context)
 def acercademi(request):
     return render(request, 'tiendalibre/acercademi.html')
