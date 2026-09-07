@@ -22,18 +22,28 @@
 
 {% block content %}
 
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-primary" style="color: #1e3c72 !important;">Nuestro Catálogo</h1>
-        <p class="lead text-secondary">Encontrá los mejores productos al mejor precio.</p>
-    </div>
+    <!-- Contenedor de Botones y Buscador -->
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 mb-5">
+        
+        <!-- Botones de Categorías -->
+        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+            <a href="?" class="btn btn-outline-primary rounded-pill px-4">Ver Todos</a>
+            {% for categoria in categorias_lista %}
+                <a href="?categoria={{ categoria.id }}" class="btn btn-outline-primary rounded-pill px-4">
+                    {{ categoria.nombre }}
+                </a>
+            {% endfor %}
+        </div>
 
-    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
-        <a href="?" class="btn btn-outline-primary rounded-pill px-4">Ver Todos</a>
-        {% for categoria in categorias_lista %}
-            <a href="?categoria={{ categoria.id }}" class="btn btn-outline-primary rounded-pill px-4">
-                {{ categoria.nombre }}
-            </a>
-        {% endfor %}
+        <!-- Barra de Búsqueda -->
+        <form action="" method="GET" class="d-flex w-100" style="max-width: 350px;">
+            <!-- El 'name="buscar"' es clave, es el nombre de la variable que leerá views.py -->
+            <input type="text" name="buscar" class="form-control rounded-start-pill border-primary" placeholder="Buscar productos..." aria-label="Buscar" required>
+            <button class="btn btn-primary rounded-end-pill px-4" type="submit">
+                Buscar
+            </button>
+        </form>
+
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">

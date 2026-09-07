@@ -19,8 +19,7 @@ from .models import Producto, Categoria
     return render(request, 'tiendalibre/catalogo.html', contexto)
 def acercademi(request):
     return render(request, 'tiendalibre/acercademi.html')"""
-from django.shortcuts import render
-import datetime
+
 
 def catalogo_productos(request):
     categorias_lista = [
@@ -103,6 +102,8 @@ def catalogo_productos(request):
             'imagen': './media/productos/libro.jpeg'
         }
     ]
+    
+    # --- 1. LÓGICA DE FILTRADO POR CATEGORÍA (BOTONES) ---
     categoria_id = request.GET.get('categoria')
 
     if categoria_id:
@@ -120,11 +121,27 @@ def catalogo_productos(request):
             
             productos_destacados = productos_filtrados
 
+    # --- 2. LÓGICA DE LA BARRA DE BÚSQUEDA (NOMBRE Y CATEGORÍA) ---
+    termino_busqueda = request.GET.get('buscar')
+
+    if termino_busqueda:
+        productos_buscados = []
+        for prod in productos_destacados:
+            # Buscamos en el nombre O en la categoría
+            if (termino_busqueda.lower() in prod['nombre'].lower() or 
+                termino_busqueda.lower() in prod['categoria'].lower()):
+                
+                productos_buscados.append(prod)
+        
+        productos_destacados = productos_buscados
+
+    # --- ARMADO DEL CONTEXTO Y RENDERIZADO ---
     context = {
         'productos_destacados': productos_destacados,
         'categorias_lista': categorias_lista,
     }
-    
     return render(request, 'tiendalibre/home.html', context)
+
+
 def acercademi(request):
     return render(request, 'tiendalibre/acercademi.html')
