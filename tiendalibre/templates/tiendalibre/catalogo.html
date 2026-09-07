@@ -28,7 +28,7 @@
         <!-- Botones de Categorías -->
         <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
             <a href="?" class="btn btn-outline-primary rounded-pill px-4">Ver Todos</a>
-            {% for categoria in categorias_lista %}
+            {% for categoria in categorias_todas %}
                 <a href="?categoria={{ categoria.id }}" class="btn btn-outline-primary rounded-pill px-4">
                     {{ categoria.nombre }}
                 </a>
@@ -47,13 +47,13 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% if productos_destacados %}
-            {% for producto in productos_destacados %}
+        {% if productos_todos %}
+            {% for producto in productos_todos %}
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0 tarjeta-custom rounded-4">
                         
                         {% if producto.imagen %}
-                            <img src="{{ producto.imagen }}" class="card-img-top foto-producto rounded-top-4" alt="{{ producto.nombre }}">
+                            <img src="{{ producto.imagen.url }}" class="card-img-top foto-producto rounded-top-4" alt="{{ producto.nombre }}">
                         {% else %}
                             <div class="bg-light d-flex align-items-center justify-content-center foto-producto rounded-top-4 text-muted">
                                 <span>Sin imagen</span>

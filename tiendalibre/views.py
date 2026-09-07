@@ -2,7 +2,7 @@ from django.shortcuts import render
 import datetime
 from .models import Producto, Categoria
 
-"""def catalogo_productos(request):
+def catalogos_y_productos(request):
     categorias = Categoria.objects.all()
     
     categoria_id = request.GET.get('categoria')
@@ -13,12 +13,12 @@ from .models import Producto, Categoria
         productos = Producto.objects.all()
 
     contexto = {
-        'categorias': categorias,
-        'productos': productos,
+        'categorias_todas': categorias,
+        'productos_todos': productos,
     }
     return render(request, 'tiendalibre/catalogo.html', contexto)
 def acercademi(request):
-    return render(request, 'tiendalibre/acercademi.html')"""
+    return render(request, 'tiendalibre/acercademi.html')
 
 
 def catalogo_productos(request):
@@ -141,7 +141,3 @@ def catalogo_productos(request):
         'categorias_lista': categorias_lista,
     }
     return render(request, 'tiendalibre/home.html', context)
-
-
-def acercademi(request):
-    return render(request, 'tiendalibre/acercademi.html')
