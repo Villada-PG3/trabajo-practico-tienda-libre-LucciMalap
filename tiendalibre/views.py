@@ -13,15 +13,21 @@ def catalogos_y_productos(request):
         productos = Producto.objects.all()
 
     contexto = {
-        'categorias_todas': categorias,
-        'productos_todos': productos,
+        'categorias': categorias,
+        'productos': productos,
     }
     return render(request, 'tiendalibre/catalogo.html', contexto)
+def home(request):
+    ultimos_productos = Producto.objects.order_by('-fecha')[:3]
+    contexto = {
+        'ultimos_productos': ultimos_productos
+    }
+    return render(request, 'tiendalibre/home.html', contexto)
 def acercademi(request):
     return render(request, 'tiendalibre/acercademi.html')
 
 
-def catalogo_productos(request):
+"""def catalogo_productos(request):
     categorias_lista = [
         {'id': 1, 'nombre': 'Electronica'},
         {'id': 2, 'nombre': 'Hogar'},
@@ -140,4 +146,4 @@ def catalogo_productos(request):
         'productos_destacados': productos_destacados,
         'categorias_lista': categorias_lista,
     }
-    return render(request, 'tiendalibre/home.html', context)
+    return render(request, 'tiendalibre/home.html', context)"""
