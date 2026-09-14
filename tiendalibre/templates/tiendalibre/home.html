@@ -1,5 +1,6 @@
 {% extends 'tiendalibre/base.html' %}
-
+{% load static %}
+{% load humanize %}
 {% block title %}Home - Tienda Libre{% endblock %}
 
 {% block extra_css %}
@@ -53,7 +54,7 @@
                                 </div>
                                 
                                 <a href="{% url 'detalle_producto' producto.pk %}" class="h5 fw-bold text-decoration-none" card-title style="color: #1e3c72;">{{ producto.nombre }}</a>
-                                <h3 class="text-success fw-bold mb-3">${{ producto.precio|floatformat:2|default:"Sin valor" }}</h3>
+                                <h3 class="text-success fw-bold mb-3">${{ producto.precio|floatformat:2|intcomma|default:"Sin valor" }}</h3>
                                 
                                 <p class="text-muted small mb-1"><strong>Marca:</strong> {{ producto.marca|upper }}</p>
                                 {% if producto.stock > 0 %}

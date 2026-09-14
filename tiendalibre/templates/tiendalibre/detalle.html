@@ -1,5 +1,6 @@
 {% extends 'tiendalibre/base.html' %}
-
+{% load static %}
+{% load humanize %}
 {% block title %}{{ producto.nombre }} - Tienda Libre{% endblock %}
 
 {% block extra_css %}
@@ -95,7 +96,7 @@
             
             <div class="mb-4">
                 <h2 class="display-5 fw-bold text-success mb-1">
-                    ${{ producto.precio|floatformat:2|default:"Consultar precio" }}
+                    ${{ producto.precio|floatformat:2|intcomma|default:"Consultar precio" }}
                 </h2>
             </div>
 
