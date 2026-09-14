@@ -22,16 +22,14 @@
 
 {% block content %}
 
-        <!-- Barra de Búsqueda -->
-        <form action="" method="GET" class="d-flex w-100" style="max-width: 350px;">
-            <!-- El 'name="buscar"' es clave, es el nombre de la variable que leerá views.py -->
+        <h2 class="fw-bold" style="color: #1e3c72; text-align: center;">Ultimos Productos subidos</h2>
+
+        <form action="" method="GET" class="my-4 d-flex w-100" style="max-width: 3500px;">
             <input type="text" name="buscar" class="form-control rounded-start-pill border-primary" placeholder="Buscar productos..." aria-label="Buscar" required>
             <button class="btn btn-primary rounded-end-pill px-4" type="submit">
                 Buscar
             </button>
         </form>
-
-        <h2 class="fw-bold" style="color: #1e3c72; text-align: center;">Ultimos Productos subidos</h2>
 
     </div>
 
@@ -54,7 +52,7 @@
                                     <span class="badge" style="background-color: #dbe9ff; color: #1e3c72;">{{ producto.categoria }}</span>
                                 </div>
                                 
-                                <h5 class="card-title fw-bold" style="color: #1e3c72;">{{ producto.nombre }}</h5>
+                                <a href="{% url 'detalle_producto' producto.pk %}" class="h5 fw-bold text-decoration-none" card-title style="color: #1e3c72;">{{ producto.nombre }}</a>
                                 <h3 class="text-success fw-bold mb-3">${{ producto.precio|floatformat:2|default:"Sin valor" }}</h3>
                                 
                                 <p class="text-muted small mb-1"><strong>Marca:</strong> {{ producto.marca|upper }}</p>

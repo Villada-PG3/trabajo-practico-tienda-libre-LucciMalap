@@ -1,14 +1,26 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 import datetime
 from .models import Producto, Categoria
+from django.db.models import Q
 
 def catalogos_y_productos(request):
     categorias = Categoria.objects.all()
     
     categoria_id = request.GET.get('categoria')
+    filtrado = request.GET.get('buscar')
+    
+    if filtrado:
+        productos = Producto.objects.filter(
+            Q(nombre__icontains=filtrado) | Q(categoria__nombre__icontains=filtrado)
+        )
     
     if categoria_id:
         productos = Producto.objects.filter(categoria_id=categoria_id)
+    elif filtrado:
+            productos = Producto.objects.filter(
+                Q(nombre__icontains=filtrado) | Q(categoria__nombre__icontains=filtrado)
+            )
     else:
         productos = Producto.objects.all()
 
@@ -26,6 +38,12 @@ def home(request):
 def acercademi(request):
     return render(request, 'tiendalibre/acercademi.html')
 
+def detalle_producto(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    contexto = {
+        'producto': producto
+    }
+    return render(request, 'tiendalibre/detalle.html', contexto)
 
 """def catalogo_productos(request):
     categorias_lista = [
