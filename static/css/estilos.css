@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f5f6fa; 
+    color: #333333;
+}
+
+.tarjeta-custom {
+    transition: all 0.3s ease;
+    border: 1px solid #eef0f5 !important;
+    background-color: #ffffff;
+}
+
+.tarjeta-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+    border-color: #dbe9ff !important;
+}
+
+.foto-producto {
+    height: 250px;
+    object-fit: contain; 
+    background-color: #ffffff;
+    padding: 1rem;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.btn-primary {
+    background-color: #2a5298;
+    border-color: #2a5298;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1e3c72;
+    border-color: #1e3c72;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.card-title a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.card-title a:hover {
+    color: #2a5298;
+}
+
+.navbar {
+    background-color: #1e3c72 !important; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: #dbe9ff !important;
+}
