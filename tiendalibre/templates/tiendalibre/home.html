@@ -72,12 +72,12 @@
                     {{ producto.descripcion|truncatechars:100 }}
                 </p>
                 {% if producto.stock > 0 %}
-                <a href="#" class="btn text-white fw-bold mt-auto rounded-3"
+                <a href="{% url 'detalle_producto' producto.pk %}" class="btn text-white fw-bold mt-auto rounded-3"
                     style="background: linear-gradient(90deg, #1e3c72, #2a5298);">
                     Añadir al Carrito
                 </a>
                 {% else %}
-                <a href="#" class="btn text-white fw-bold mt-auto rounded-3"
+                <a href="{% url 'detalle_producto' producto.pk %}" class="btn text-white fw-bold mt-auto rounded-3"
                     style="background: linear-gradient(90deg, #721e1e, #982a2a);">
                     Sin stock
                 </a>
